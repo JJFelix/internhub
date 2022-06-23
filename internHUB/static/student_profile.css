@@ -1,0 +1,54 @@
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-fixed-top {
+  border: 0;
+}
+
+.nav-bar-text{
+  font-family: 'Potta One', cursive;
+}
+
+.main-content{
+    /* border: solid 3px greenyellow; */
+    background-color: aqua;
+    width: 100vw;
+    /* padding: 20px; */
+    position: relative;
+    top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height:81vh ;
+}
+
+.card-A{
+    border: solid 2px grey;
+    width: 20vw;
+}
+
+.center-block{
+    border: solid 2px seagreen;
+    width: 60vw;
+    padding: 20px;
+    justify-items: center;
+}
+
+.card-B{
+    border: solid 2px rgb(115, 50, 50);
+    width: 20vw;
+}
+
+.footer{
+    background-color: rgba(20, 37, 105, 0.644);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    width: 100vw;
+    height: 10vh;
+    position:absolute;
+    bottom: 0%;
+    text-align: center;    
+}

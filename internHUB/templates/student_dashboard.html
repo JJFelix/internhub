@@ -1,0 +1,100 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Student Dashboard
+{% endblock %}
+
+{% block styles %} 
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Alegreya+Sans+SC&family=Indie+Flower&family=Kaushan+Script&family=Orbitron:wght@700&family=Permanent+Marker&family=Potta+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="navigation-bar">
+  <nav class="navbar navbar-inverse navbar-fixed-top ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <p class="navbar-brand nav-bar-text" >Student Dashboard</p>
+      </div>
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right nav-bar-text">
+          <li><img class="profile-image" src="https://picsum.photos/50" alt="" ></li>
+          <li><a href="{{ url_for('student_profile') }}">{{ student.username }}</a></li>
+          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        </ul>
+        <form class="navbar-form">
+          <input type="search" class="form-control me-2" placeholder="" aria-label="Search">
+          <button class="btn btn-outline-success me-2" type="submit">Search</button>
+        </form>
+      </div>  
+    </div>
+  </nav>
+</div>
+
+<div class="container-fluid">
+  <div class="col-sm-3 col-md-2 sidebar sidebar-side row">
+    <ul class="nav nav-sidebar" id="sidebar-nav-custom">
+      <li><a href="{{ url_for('student_create_profile') }}">Create Profile</a></li>
+      <li><a href="#">My Applications</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class=" flashed-messages" id="hideMe">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="page-header"> 
+      <h1>Welcome, {{ student.username }}</h1>
+    </div> 
+
+    <div class="table-companies table-striped">
+      <table class="table">
+        <h2 class="table-title-text" >Available positions</h2>
+        <thead class="table-header-text">
+          <tr>
+            <th> Company </th>
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody class="table-body-text">
+          <tr>
+            {% for i in range(posts|length) %}
+            <td><a href="#"></a><button class="btn-outline-success btn">{{ company_names[i] }}</button></td>
+              <td>{{ posts[i].title }}</td>
+              <td>{{ posts[i].description }}</td>
+              <td><a href="#"><button class="apply-btn">Apply Here</button></a></td>
+            </tr>
+            {% endfor %}    
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <p>Internhub<sup>&COPY;</sup> 2022</p>
+      <p>All Rights Reserved</p>
+    </div>
+    
+  </div>
+</div>
+{% endblock %}

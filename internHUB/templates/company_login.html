@@ -1,0 +1,57 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Company Login
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Aclonica&family=Alegreya+Sans+SC&family=Indie+Flower&family=Kaushan+Script&family=Permanent+Marker&family=Potta+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand nav-bar-text" href="#">Company</a>
+      </div>
+
+      <div id="navbar" class="collapse navbar-collapse navbar-right">
+        <ul class="nav navbar-nav nav-bar-text">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li class="active"><a href="#">Login</a></li>
+          <li><a href="{{ url_for('company_signup') }}">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+    <div class="container">
+      <form class="form-signin" method="POST" >
+        <h2 class="form-signin-heading form-text">Log in</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.company_name) }}
+        {{ wtf.form_field(form.email) }}
+        {{ wtf.form_field(form.password) }}
+        <button class="btn btn-lg btn-primary btn-block form-text form-button" type="submit">Sign in</button><br>
+        <p class="form-other-text" style="text-align:center;">Not registered?<a class="link-text" href="{{ url_for('company_signup') }}"> Register </a> here</p>
+      </form>
+    </div>
+<div class="footer">
+  <p>Internhub<sup>&COPY;</sup> 2022</p>
+  <p>All Rights Reserved</p>
+</div>
+
+
+
+{% endblock %}

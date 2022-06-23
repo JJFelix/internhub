@@ -1,0 +1,7 @@
+$ export FLASK_APP=hello
+$ flask run
+
+flask db init
+
+flask db migrate -m "Some text"
+flask db upgrade
