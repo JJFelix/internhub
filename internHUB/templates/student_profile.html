@@ -10,10 +10,10 @@ My profile
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{url_for('.static', filename='student_profile.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='profile.css')}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Alegreya+Sans+SC&family=Kaushan+Script&family=Permanent+Marker&family=Potta+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Aclonica&family=Alegreya+Sans+SC&family=Kaushan+Script&family=Permanent+Marker&family=Potta+One&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -37,14 +37,28 @@ My profile
 </nav>
 <div class="main-content">
     <div class="card-A">
-        <p>A</p>
+        <!-- <p>A</p> -->
     </div>
     <div class="center-block">
         <!-- <h1>Hello. This is your profile</h1> -->
-        <p>C</p>
+        <!-- <p>C</p> -->
+        <div>
+            <label for="Name">Student name: </label>
+            <p>{{ student.username }}</p><br>
+            <label for="Email">Student email: </label>
+            <p>{{ current_user.email }}</p><br>
+            <label for="School">School name: </label>
+            <p>{{ profile.school }}</p><br>
+            <label for="Course">Course: </label>
+            <p>{{ profile.course }}</p><br>
+            <label for="Year of Study">Year of Study: </label>
+            <p>{{ profile.year_of_study }}</p><br>
+            <label for="Skills">Skills: </label>
+            <p>{{ profile.skills }}</p><br>
+        </div>
     </div>
     <div class="card-B">
-        <p>B</p>
+        <!-- <p>B</p> -->
     </div>
 </div>
 

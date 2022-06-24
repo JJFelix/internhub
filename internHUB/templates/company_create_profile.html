@@ -1,12 +1,71 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Create profile
+{% endblock %} 
+
+{% block styles %} 
+{{super()}}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{url_for('.static', filename='profile.css')}}">
+<!-- <link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}"> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Aclonica&family=Alegreya+Sans+SC&family=Kaushan+Script&family=Permanent+Marker&family=Potta+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
 <body>
-    <div><h1>Hello</h1></div>
-    
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p class="navbar-brand nav-bar-text" >My Profile</p>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" style="text-align: right;">
+                <ul class="nav navbar-nav navbar-right nav-bar-text">
+                    <li ><a href="{{ url_for('company_dashboard') }}">Back to Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> 
+
+    <div class="main-content">
+        <div class="card-A">
+            <!-- <div class="col-sm-3 col-md-2 sidebar static-navbar sidebar-side" >
+                <ul class="nav nav-sidebar">
+                </ul>
+            </div> --> 
+        </div>
+
+        <div class="center-block">
+            <form class="form-signin" method="POST">
+                <h2 class="form-signin-heading form-text">Create Profile</h2>
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.domain) }}
+                {{ wtf.form_field(form.location) }}
+                {{ wtf.form_field(form.description) }}
+                <button class="btn btn-lg btn-primary btn-block form-text form-button" type="submit">Submit</button><br>
+            </form>  
+        </div>
+
+        <div class="card-B">
+            <!-- <p>B</p> -->
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>Internhub<sup>&COPY;</sup> 2022</p>
+        <p>All Rights Reserved</p>
+    </div>
 </body>
-</html>
+{% endblock %}

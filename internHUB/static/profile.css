@@ -1,0 +1,117 @@
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.navbar-fixed-top {
+  border: 0;
+}
+
+.nav-bar-text{
+  font-family: 'Potta One', cursive;
+}
+
+.main-content{
+    /* border: solid 3px greenyellow; */
+    /* background-color: aqua; */
+    width: 100vw;
+    /* padding: 20px; */
+    position: relative;
+    top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height:81vh ;
+    background-color: rgb(2, 7, 25);
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin .form-text{
+  font-family: 'Aclonica', sans-serif;
+}
+
+/* .form-signin .form-button{
+  background-color: grey;
+} */
+.form-signin .form-button:hover{
+  background-color: rgb(255, 162, 0);  
+}
+
+.card-A{
+    /* border: solid 2px grey; */
+    width: 20vw;
+}
+
+.center-block{
+    /* border: solid 2px seagreen; */
+    width: 60vw;
+    padding: 20px;
+    justify-items: center;
+}
+
+.center-block .new-post-form{
+  /* margin-left: 30%; */
+  border-radius: 2.5%;
+  padding: 5px;
+  width: 400px;
+  color: white;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center; */
+}
+
+.center-block #new-post-btn{
+  background-color: blue;
+}
+
+.card-B{
+    /* border: solid 2px rgb(115, 50, 50); */
+    width: 20vw;
+}
+
+.footer{
+    background-color: rgba(20, 37, 105, 0.644);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    width: 100vw;
+    height: 10vh;
+    position:absolute;
+    bottom: 0%;
+    text-align: center;    
+}

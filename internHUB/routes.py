@@ -71,6 +71,10 @@ def student_login():
         return redirect(url_for('student_login_form_error'))
     return render_template('student_login.html', form = form)
 
+@app.route('/student_login_form_error')
+def student_login_form_error():
+    return render_template('student_login_form_error.html')
+
 # company login
 @app.route('/company_login/', methods=['GET', 'POST'])
 def company_login():
@@ -87,11 +91,6 @@ def company_login():
         return redirect(url_for('company_login_form_error'))
     return render_template('company_login.html', form = form)
 
-
-@app.route('/student_login_form_error')
-def student_login_form_error():
-    return render_template('student_login_form_error.html')
-
 @app.route('/company_login_form_error')
 def company_login_form_error():
     return render_template('company_login_form_error.html')
@@ -102,14 +101,15 @@ def student_dashboard():
     student = Student.query.filter_by(student_id = current_user.id).first()
     posts = CompanyCreatePost.query.all()
     company_names = []
+    company_ids = []
     for post in posts:
         company = Company.query.filter_by(id = post.post_id).first()
         company_names.append(company.company_name)
-
+        company_ids.append(company.id)
     if not student:
         logout_user(current_user)
         return redirect(url_for('student_login'))
-    return render_template('student_dashboard.html', student = student, posts=posts, company_names=company_names)
+    return render_template('student_dashboard.html', student = student, posts=posts, company_names=company_names, company_ids=company_ids)
 
 @app.route('/company_dashboard/', methods=['GET', 'POST'])
 @login_required
@@ -122,17 +122,11 @@ def company_dashboard():
     return render_template('company_dashboard.html', company=company, posts = posts) 
 
 
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
-
 @app.route('/company_create_post', methods=['GET', 'POST'])
 @login_required
 def company_create_post():
     form  = CompanyCreatePostForm()
-    print(current_user.id)
+    # print(current_user.id)
     if form.validate_on_submit():
         company = Company.query.filter_by(company_id=current_user.id).first()
         if company:
@@ -142,23 +136,62 @@ def company_create_post():
             return redirect(url_for('company_create_post'))
     return render_template('company_create_post.html', form = form)
 
-
 @app.route('/student_create_profile', methods=['GET', 'POST'])
 @login_required
 def student_create_profile():
-    return render_template('student_create_profile.html')
+    form = StudentCreateProfileForm()
+    if form.validate_on_submit():
+        student = Student.query.filter_by(student_id=current_user.id).first()
+        if student: 
+            student_profile = StudentCreateProfile(school = form.school.data, course = form.course.data, year_of_study = form.year_of_study.data, skills = form.skills.data, profile_id = student.id)
+            db.session.add(student_profile)
+            db.session.commit()
+            flash('Successfully created student profile')
+            return redirect(url_for('student_create_profile'))
+    return render_template('student_create_profile.html', form=form)
 
 @app.route('/student_profile')
 @login_required
 def student_profile():
-    return render_template('student_profile.html')
+    student = Student.query.filter_by(student_id = current_user.id).first()
+    profile = StudentCreateProfile.query.filter_by(profile_id = student.id).first()
+    if not student:
+        logout_user(current_user)
+        return redirect(url_for('student_login'))
+    return render_template('student_profile.html', student=student, profile=profile)
+
+@app.route('/view_company/<int:company_id>', methods=['GET', 'POST'])
+@login_required
+def view_company(company_id):
+    ###
+    return redirect(url_for('company_profile'))
 
 @app.route('/company_create_profile', methods=['GET', 'POST'])
 @login_required
 def company_create_profile():
-    return render_template('company_create_profile.html')
+    form = CompanyCreateProfileForm()
+    if form.validate_on_submit():
+        company = Company.query.filter_by(company_id = current_user.id).first()
+        if company:
+            company_profile = CompanyCreateProfile(domain = form.domain.data, location = form.location.data, description = form.description.data, profile_id = company.id)
+            db.session.add(company_profile)
+            db.session.commit()
+            flash("Successfully created Company profile")
+            return redirect(url_for('company_create_profile'))
+    return render_template('company_create_profile.html', form = form)
 
 @app.route('/company_profile')
 @login_required
 def company_profile():
-    return render_template('company_profile.html')
+    company = Company.query.filter_by(company_id = current_user.id).first()
+    profile = CompanyCreateProfile.query.filter_by(profile_id = company.id).first()
+    if not company:
+        logout_user(current_user)
+        return redirect(url_for('company_login'))
+    return render_template('company_profile.html', company=company, profile=profile)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

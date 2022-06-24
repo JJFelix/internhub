@@ -3,14 +3,14 @@
 
 {% block title %}
 Create profile
-{% endblock %}
+{% endblock %} 
 
 {% block styles %} 
 {{super()}}
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{url_for('.static', filename='student_profile.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='profile.css')}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Aclonica&family=Alegreya+Sans+SC&family=Kaushan+Script&family=Permanent+Marker&family=Potta+One&display=swap" rel="stylesheet">
@@ -19,62 +19,50 @@ Create profile
 {% block content %}
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top ">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <p class="navbar-brand nav-bar-text" >My Profile</p>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p class="navbar-brand nav-bar-text" >My Profile</p>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" style="text-align: right;">
+                <ul class="nav navbar-nav navbar-right nav-bar-text">
+                    <li ><a href="{{ url_for('student_dashboard') }}">Back to Dashboard</a></li>
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse" style="text-align: right;">
-            <ul class="nav navbar-nav navbar-right nav-bar-text">
-                <li ><a href="{{ url_for('student_dashboard') }}">Back to Dashboard</a></li>
-            </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="card-A">
+            <!-- <p>A</p> -->
         </div>
-    </div>
-</div>
 
-<div class="main-content">
-    <div class="card-A">
-        <p>A</p>
-    </div>
+        <div class="center-block">
+            <form class="form-signin" method="POST">
+                <h2 class="form-signin-heading form-text">Create Profile</h2>
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.school) }}
+                {{ wtf.form_field(form.course) }}
+                {{ wtf.form_field(form.year_of_study) }}
+                {{ wtf.form_field(form.skills) }}
+                <button class="btn btn-lg btn-primary btn-block form-text form-button" type="submit">Submit</button><br>
+            </form>  
+        </div>
 
-    <div class="center-block">
-        <!-- <h1>Hello. This is your profile</h1> -->
-        <!-- <p>C</p> -->
-        <form class="student-create-profile-form" method="post">
-            <label for="Name">Name: </label>
-            <input type="text" name="" id="" ><br>
-            <label for="">Course: </label>
-            <input type="text" name="" id="" ><br>
-            <label for="school">School: </label>
-            <input type="text" name="" id=""><br>
-            <label for="year-of-study">Year Of Study: </label>
-            <select name="year-of-study" id="">
-                <option value="1">1<sup>st</sup> Year</option>
-                <option value="1">2<sup>nd</sup> Year</option>
-                <option value="1">3<sup>rd</sup>Year</option>
-                <option value="1">4<sup>th</sup> Year</option>
-            </select><br>
-            <input type="submit"  value="Submit" name="" id="">
-        </form>  
+        <div class="card-B">
+            <!-- <p>B</p> -->
+        </div>
+
     </div>
 
-    <div class="card-B">
-        <p>B</p>
+    <div class="footer">
+        <p>Internhub<sup>&COPY;</sup> 2022</p>
+        <p>All Rights Reserved</p>
     </div>
-
-</div>
-
-<div class="footer">
-    <p>Internhub<sup>&COPY;</sup> 2022</p>
-    <p>All Rights Reserved</p>
-</div>
-    
 </body>
-
-
 {% endblock %}

@@ -7,7 +7,7 @@ New Post
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='profile.css')}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Alegreya+Sans+SC&family=Indie+Flower&family=Kaushan+Script&family=Orbitron:wght@700&family=Permanent+Marker&family=Potta+One&display=swap" rel="stylesheet">
@@ -35,34 +35,34 @@ New Post
     </div>
   </div>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar static-navbar sidebar-side" >
-        <ul class="nav nav-sidebar">
-        </ul>
-      </div>
+  <div class="main-content">
+    <div class="card-A">
     </div>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h1 class="page-header">Create new attachment post</h1>
-      <div class="row placeholders new-post-form">
-        <div class="col-xs-6 col-sm-3 placeholder">
-          <button id="new-post-btn">Click here to create a new post <i style=" font-weight: 1000;" >&#43;</i></button>
-          <p></p>
-          <form id="new-post-form" style="display: none;" method="POST">
+    <div class="center-block"> <!-- col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main -->
+      <!-- <h1 class="page-header">Create new attachment post</h1> -->
+      <!-- <div class="new-post-form"> -->
+          <!-- <button id="new-post-btn">Click here to create a new post <i style=" font-weight: 1000;" >&#43;</i></button> -->
+
+          <form class="form-signin new-post-form" id="new-post-form" method="POST"> <!-- style="display: none;" -->
+            <h2 class="form-signin-heading form-text">New post</h2>
             {{ form.hidden_tag() }}
             {{ wtf.form_field(form.title) }}
             {{ wtf.form_field(form.description) }}
-            <button class="btn btn-lg btn-primary btn-block form-text" type="submit">Create Post</button>
+            <button class="btn btn-lg btn-primary btn-block form-text form-button" type="submit">Create Post</button>
           </form>
+        <!-- </div> -->
+      </div> 
+      
+        <div class="card-B">
+          <!-- <p>B</p> -->
         </div>
-      </div>          
-    </div>
 
-    <div class="footer">
-      <p>Internhub<sup>&COPY;</sup> 2022</p>
-      <p>All Rights Reserved</p>
-    </div>
+  </div>
+
+  <div class="footer">
+    <p>Internhub<sup>&COPY;</sup> 2022</p>
+    <p>All Rights Reserved</p>
   </div>
 
   <script>
