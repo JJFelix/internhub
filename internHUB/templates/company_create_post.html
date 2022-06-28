@@ -35,6 +35,17 @@ New Post
     </div>
   </div>
 
+    <div class="main">
+    <div class="flashed-messages" id="hideMe">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    </div>
+
   <div class="main-content">
     <div class="card-A">
     </div>

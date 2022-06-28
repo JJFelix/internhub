@@ -133,6 +133,7 @@ def company_create_post():
             new_post = CompanyCreatePost(title = form.title.data, description = form.description.data, post_id = company.id)
             db.session.add(new_post)
             db.session.commit()
+            flash("Successfully created post")
             return redirect(url_for('company_create_post'))
     return render_template('company_create_post.html', form = form)
 
@@ -160,11 +161,27 @@ def student_profile():
         return redirect(url_for('student_login'))
     return render_template('student_profile.html', student=student, profile=profile)
 
+# @app.route('/view_company/<int:company_id>', methods=['GET', 'POST'])
+# @login_required
+# def view_company(company_id):
+
+#     return redirect(url_for('view_company_profile'))
+
+
 @app.route('/view_company/<int:company_id>', methods=['GET', 'POST'])
-@login_required
 def view_company(company_id):
-    ###
-    return redirect(url_for('company_profile'))
+    company = Company.query.get(company_id)
+    
+    # print(company)
+    # print(profile)
+    # for item in profile:
+    #     print(item.id)
+    # print(profile)
+    if company:
+        company_user = User.query.filter_by(id = company.company_id).first()
+        profile = CompanyCreateProfile.query.filter_by(profile_id = company.id).first()
+        return render_template('company_profile.html', company=company, profile=profile, email = company_user.email)
+    return redirect(url_for('student_dashboard'))
 
 @app.route('/company_create_profile', methods=['GET', 'POST'])
 @login_required

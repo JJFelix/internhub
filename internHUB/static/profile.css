@@ -115,3 +115,38 @@ body{
     bottom: 0%;
     text-align: center;    
 }
+
+.main .flashed-messages{
+  background-color: rgb(229, 182, 230);
+  border-radius: 3%;
+  text-align: center;
+  justify-items: center;
+}
+
+/* hide flash message after 5 seconds */
+
+#hideMe {
+    -moz-animation: cssAnimation 0s ease-in 6s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 6s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 6s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 6s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}
